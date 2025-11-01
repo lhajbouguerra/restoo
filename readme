@@ -1,0 +1,43 @@
+[qr code scanned / link clicked]
+          |
+          v
+[ Cart State (front-end) ]
+          |
+          v
+/----------------------------\
+|  ConfirmOrder Page (/order/[tableId]/confirm) |
+\----------------------------/
+          |
+          | onConfirm
+          v
+[ Front-end POST request ]
+          |
+          v
+/-------------------\
+|  Backend FastAPI  |  --> يحفظ الطلب في DB (SQLite / Prisma)
+| /order/{table}/confirm |
+\-------------------/
+          |
+          v
+ [ Response success ]
+          |
+          v
+/-----------------------------\
+| Redirect to OrderProgress  |
+|  Page (/order/[tableId]/progress) |
+\-----------------------------/
+          |
+          | Fetch order
+          v
+[ Backend GET /order/{table} ] --> ترجع بيانات الطلب مع timestamp
+          |
+          v
+/----------------------\
+| OrderProgress Component |
+| - status order (Pending/Preparing/Ready)   |
+| - عرض items & total     |
+\----------------------/
+          |
+          v
+[ Order Ready! -> Show button Back to Menu ]
+
