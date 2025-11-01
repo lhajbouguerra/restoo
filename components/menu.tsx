@@ -176,25 +176,36 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
                 ? router.push(`/order/progress?table=${encodeURIComponent(tableParam)}`)
                 : router.push(`/order/progress?guest=${encodeURIComponent(guestId ?? "")}`)
             }
-            className="w-full w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base"
+            className="
+    w-auto font-semibold py-2 px-4 sm:px-6 rounded-lg text-sm sm:text-base text-white 
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 
+    transition-all duration-300 ease-in-out shadow-md
+  "
           >
             {t("button.view_order")}
           </Button>
+
         ) : (
           <Button
             onClick={onGoToCart}
-            className="relative flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base"
+            className="
+    relative flex items-center gap-2 font-semibold py-2 px-4 sm:px-6 rounded-lg text-sm sm:text-base text-white
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 
+    transition-all duration-300 ease-in-out shadow-md
+  "
           >
             <ShoppingCart className="h-5 w-5" />
             <span>Cart</span>
 
-            {/* Cart count badge */}
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
                 {cartCount}
               </span>
             )}
           </Button>
+
         )}
       </div>
 
@@ -233,22 +244,35 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? "default" : "outline"}
-                className={`whitespace-nowrap rounded-full transition-all text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 ${selectedCategory === category
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border-border text-muted-foreground hover:border-primary hover:text-foreground bg-transparent"
-                  }`}
+                className={`
+    whitespace-nowrap rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 transition-all duration-300 ease-in-out shadow-sm
+    ${selectedCategory === category
+                    ? `
+        text-white 
+        bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+        dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+      `
+                    : `
+        border border-border text-muted-foreground bg-transparent
+        hover:border-transparent hover:text-white
+        hover:bg-linear-to-r hover:from-emerald-600 hover:to-emerald-700
+        dark:hover:from-blue-600 dark:hover:to-blue-700
+      `
+                  }
+  `}
                 role="tab"
                 aria-selected={selectedCategory === category}
                 aria-controls="menu-items"
               >
                 {t(`category.${category.toLowerCase()}`)}
               </Button>
+
             ))}
           </div>
 
           {/* Menu Grid */}
           <div
-            className="grid  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
+            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
             role="grid"
             aria-label="Menu items"
           >
@@ -264,6 +288,8 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
               />
             ))}
           </div>
+
+
 
           {/* No Results Message */}
           {filteredItems.length === 0 && (
@@ -299,7 +325,7 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
                 onError={() => handleImageError(selectedProduct.id)}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />
 
               <button
                 onClick={() => setSelectedProduct(null)}
@@ -388,27 +414,41 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
                   onClick={() => updateQuantity(selectedProduct.id, -1)}
                   size="sm"
                   variant="outline"
-                  className="p-0 h-7 sm:h-8 w-7 sm:w-8 border-border hover:bg-primary/20 text-foreground"
+                  className={`
+    p-0 h-7 sm:h-8 w-7 sm:w-8 rounded-md border-none text-white shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 ease-in-out
+    ${(quantities[selectedProduct.id] || 0) === 0 ? "opacity-50 cursor-not-allowed" : ""}
+  `}
                   disabled={(quantities[selectedProduct.id] || 0) === 0}
                   aria-label="Decrease quantity"
                 >
                   <Minus size={14} />
                 </Button>
+
                 <span
                   className="flex-1 text-center font-semibold text-foreground text-sm sm:text-lg"
                   aria-live="polite"
                 >
                   {quantities[selectedProduct.id] || 0}
                 </span>
+
                 <Button
                   onClick={() => updateQuantity(selectedProduct.id, 1)}
                   size="sm"
                   variant="outline"
-                  className="p-0 h-7 sm:h-8 w-7 sm:w-8 border-border hover:bg-primary/20 text-foreground"
+                  className="
+    p-0 h-7 sm:h-8 w-7 sm:w-8 rounded-md border-none text-white shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 ease-in-out
+  "
                   aria-label="Increase quantity"
                 >
                   <Plus size={14} />
                 </Button>
+
               </div>
 
               <Button
@@ -417,16 +457,21 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
                   setSelectedProduct(null)
                 }}
                 disabled={(quantities[selectedProduct.id] || 0) === 0 || !!activeOrder}
-                className={`w-full font-semibold py-2 sm:py-3 rounded-lg transition-all text-sm sm:text-base flex items-center justify-center gap-2 ${(quantities[selectedProduct.id] || 0) === 0 || !!activeOrder
-                  ? "bg-muted text-muted-foreground cursor-not-allowed"
-                  : "bg-primary hover:bg-primary/90 text-primary-foreground"
-                  }`}
+                className={`
+    w-full font-semibold py-2 sm:py-3 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2
+    transition-all duration-300 ease-in-out shadow-md
+    ${(quantities[selectedProduct.id] || 0) === 0 || !!activeOrder
+                    ? "bg-muted text-muted-foreground cursor-not-allowed"
+                    : "text-white bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800"
+                  }
+  `}
               >
                 <Plus size={16} />
                 {(quantities[selectedProduct.id] || 0) > 0
                   ? `Add ${quantities[selectedProduct.id]}`
                   : "Add to Cart"}
               </Button>
+
             </div>
           </div>
         </div>

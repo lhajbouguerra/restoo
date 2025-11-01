@@ -74,7 +74,7 @@ const translations = {
     "button.confirm": "Confirmer la commande",
     "button.view_order": "Voir la commande",
     "button.confirm_send": "Confirmer & Envoyer la commande",
-    "button.close_order": "Clore la commande",
+    "button.close_order": "Anuler la commande",
     "button.back_to_menu": "Retour au menu",
     "button.menu": "menu",
     "language.en": "Anglais",

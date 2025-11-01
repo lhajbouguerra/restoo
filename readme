@@ -1,6 +1,9 @@
 [qr code scanned / link clicked]
           |
           v
+[takeway/dine-in choice]
+            |
+            v
 [ Cart State (front-end) ]
           |
           v

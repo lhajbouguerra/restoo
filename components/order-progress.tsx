@@ -203,11 +203,16 @@ export default function OrderProgress({ tableNumber: tableNumberProp, onBackToMe
     <div className="p-4 sm:p-6 max-w-2xl mx-auto min-h-[70vh]">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">Order Ticket</h1>
-        <Button variant="outline" onClick={onBackToMenu} className="flex items-center gap-2 text-sm">
+        <Button variant="outline" onClick={onBackToMenu} className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  ">
           <ArrowLeft size={16} /> Menu
         </Button>
       </div>
-
+      
       <Card className="p-6 sm:p-8 mb-6 border-2 shadow-xl bg-card/80">
         <div className="flex items-center justify-between border-b pb-4 mb-4 ">
           <div className="flex items-center gap-3 font-semibold text-2xl">
@@ -255,7 +260,7 @@ export default function OrderProgress({ tableNumber: tableNumberProp, onBackToMe
                 <div className="font-semibold text-base text-foreground">{it.name}</div>
                 {it.description && <div className="text-xs text-muted-foreground line-clamp-1">{it.description}</div>}
               </div>
-              <div className="text-right flex-shrink-0">
+              <div className="text-right shrink-0">
                 <div className="font-medium text-sm text-foreground">DT {(it.price * it.quantity).toFixed(2)}</div>
                 <div className="text-xs font-medium text-primary">x{it.quantity}</div>
               </div>
@@ -288,7 +293,12 @@ export default function OrderProgress({ tableNumber: tableNumberProp, onBackToMe
         <Button
           onClick={onBackToMenu}
           variant="secondary"
-          className="w-full h-10 text-base font-semibold"
+          className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  "
         >
           {t("button.back_to_menu")}
         </Button>
@@ -308,7 +318,12 @@ export default function OrderProgress({ tableNumber: tableNumberProp, onBackToMe
                 {t("order.confirm_close_message")}
               </p>
               <div className="flex justify-end gap-3">
-                <Button variant="outline" onClick={() => setConfirmOpen(false)}>
+                <Button variant="outline" onClick={() => setConfirmOpen(false)} className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  ">
                   {t("button.cancel")}
                 </Button>
                 <Button

@@ -162,8 +162,18 @@ export default function ConfirmOrder({
           <p className="text-muted-foreground mt-2 mb-6">
             {t("order.cart_empty_message")}
           </p>
-          <Button variant="outline" onClick={onBack} className="flex items-center gap-2 text-sm">
-            <ArrowLeft size={16} /> {t("button.menu")}
+          <Button
+            variant="outline"
+            onClick={onBack}
+            disabled={isLoading}
+            className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  "
+          >
+            <ArrowLeft size={16} /> {t('button.menu')}
           </Button>
         </Card>
       </div>
@@ -180,8 +190,18 @@ export default function ConfirmOrder({
             : t("order.takeaway_order") + (guestId ? ` • ${guestId}` : "")}
         </h2>
 
-        <Button variant="outline" onClick={onBack} disabled={isLoading} className="flex items-center gap-2 text-sm">
-          <ArrowLeft size={16} /> {t("button.menu")}
+        <Button
+          variant="outline"
+          onClick={onBack}
+          disabled={isLoading}
+          className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  "
+        >
+          <ArrowLeft size={16} /> {t('button.menu')}
         </Button>
       </div>
 
@@ -208,7 +228,7 @@ export default function ConfirmOrder({
           <Card key={item.id} className="p-3 sm:p-4 bg-card border border-border">
             <div className="flex gap-3 sm:gap-4">
               {/* Image */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden flex-shrink-0">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden shrink-0">
                 <img
                   src={item.image || "/placeholder.svg"}
                   alt={item.name}
@@ -242,8 +262,13 @@ export default function ConfirmOrder({
                       onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
                       size="icon"
                       variant="outline"
-                      className="h-7 w-7 sm:h-8 sm:w-8 border-border"
                       disabled={isLoading || item.quantity <= 1}
+                      className="
+    h-7 w-7 sm:h-8 sm:w-8 text-white border-none rounded-md shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed
+  "
                     >
                       <Minus size={14} />
                     </Button>
@@ -254,8 +279,13 @@ export default function ConfirmOrder({
                       onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
                       size="icon"
                       variant="outline"
-                      className="h-7 w-7 sm:h-8 sm:w-8 border-border"
                       disabled={isLoading}
+                      className="
+    h-7 w-7 sm:h-8 sm:w-8 text-white border-none rounded-md shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed
+  "
                     >
                       <Plus size={14} />
                     </Button>
@@ -265,8 +295,12 @@ export default function ConfirmOrder({
                     onClick={() => onRemoveItem(item.id)}
                     size="icon"
                     variant="outline"
-                    className="h-7 w-7 sm:h-8 sm:w-8 text-destructive border-destructive/20 hover:bg-destructive/10 hover:text-destructive"
                     disabled={isLoading}
+                    className="
+    h-7 w-7 sm:h-8 sm:w-8 text-white border-none rounded-md shadow-md
+    bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700
+    transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed
+  "
                   >
                     <Trash2 size={14} />
                   </Button>
@@ -286,17 +320,22 @@ export default function ConfirmOrder({
           </div>
           <Button
             onClick={handleConfirmOrder}
-            disabled={isLoading || items.length === 0 || message?.type === "success"}
-            className="w-full h-12 text-lg font-semibold"
+            disabled={isLoading || items.length === 0 || message?.type === 'success'}
+            className="
+    w-full h-12 text-lg font-semibold text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  "
           >
             {isLoading ? (
               <Loader2 size={24} className="animate-spin mr-2" />
-            ) : message?.type === "success" ? (
+            ) : message?.type === 'success' ? (
               <>
-                <CheckCircle size={24} className="mr-2" /> {t("order.order_sent")}
+                <CheckCircle size={24} className="mr-2" /> {t('order.order_sent')}
               </>
             ) : (
-              t("button.confirm_send")
+              t('button.confirm_send')
             )}
           </Button>
         </div>

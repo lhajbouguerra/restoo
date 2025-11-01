@@ -100,7 +100,7 @@ export default function ScanPage() {
             </p>
 
             {cameraError ? (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 " >
                 <p className="text-red-600">Camera access denied.</p>
                 <Button onClick={handleRetry}>Retry Camera Access</Button>
               </div>
@@ -115,7 +115,12 @@ export default function ScanPage() {
             )}
 
             <canvas ref={canvasRef} className="hidden" />
-            <Button onClick={()=>router.replace("/order")} variant="outline" className="bg-destructive hover:bg-destructive/90 text-destructive-foreground">
+            <Button onClick={() => router.replace("/order")} variant="outline" className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  ">
               {t("button.cancel")}
             </Button>
           </>
@@ -127,10 +132,15 @@ export default function ScanPage() {
             <p className="text-sm text-muted-foreground">
               Table: <span className="font-mono">{tableNumber}</span>
             </p>
-            <Button onClick={handleContinue} className="bg-primary text-white">
+            <Button onClick={handleContinue} className="
+    flex items-center gap-2 text-sm font-medium text-white border-none shadow-md
+    bg-linear-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800
+    dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800
+    transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
+  ">
               Continue
             </Button>
-            <Button onClick={handleRetry} variant="outline">
+            <Button onClick={handleRetry} variant="outline" >
               Scan Again
             </Button>
           </div>
