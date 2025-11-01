@@ -8,7 +8,7 @@ import { AlertCircle, ArrowLeft, CheckCircle, Loader2, Minus, Plus, ShoppingCart
 import { useLanguage } from "@/components/language-provider";
 import type { CartItem } from "@/lib/types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE = "https://resto.qzz.io";
 
 export default function ConfirmOrder({
   items,

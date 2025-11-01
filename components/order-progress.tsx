@@ -13,7 +13,7 @@ interface Props {
   guestId?: string;     // موجود كان لل-Takeaway
   onBackToMenu: () => void;
 }
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+const API_BASE = "https://resto.qzz.io";
 
 export default function OrderProgress({ tableNumber: tableNumberProp, onBackToMenu }: Props) {
   const searchParams = useSearchParams();

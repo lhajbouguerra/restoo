@@ -44,7 +44,7 @@ export default function Menu({ onAddToCart, onGoToCart, cartCount }: MenuProps) 
   const guestId = searchParams?.get("guest")
   const tableNumber = tableParam ? Number(tableParam) : undefined
   const router = useRouter()
-  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? ""
+  const API_BASE = "https://resto.qzz.io"
 
   const [csrfToken, setCsrfToken] = useState<string | null>(null)
 
